@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card } from "../components";
 import { useFetch } from "../hooks/useFetch";
 
 export const MovieList = ({ apiPath }) => {
-  // const [movies, setMovies] = useState([]);
-
   const { data: movies } = useFetch(apiPath);
 
   return (
