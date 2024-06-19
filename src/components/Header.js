@@ -41,7 +41,7 @@ export const Header = () => {
           >
             <img src={Logo} className="h-8" alt="Cinemate Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Cinemate
+              MovieMatrix
             </span>
           </Link>
           <div id="mobile-nav" className="flex md:order-2">
