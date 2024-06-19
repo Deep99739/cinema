@@ -9,7 +9,7 @@ export const Footer = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2030{" "}
             <Link to="/" className="hover:underline">
-              Cinemate™
+              MovieMatrix
             </Link>
           </span>
           <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
@@ -29,7 +29,7 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:underline me-4 md:me-6"
               >
-                Linked In
+                LinkedIn
               </a>
             </li>
             <li>
