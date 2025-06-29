@@ -13,8 +13,15 @@ export const Header = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const queryTerm = event.target.search.value;
+    const year = event.target.year.value;
+    const rating = event.target.rating.value;
+    const genre = event.target.genre.value;
     event.target.reset();
-    return navigate(`/search?query=${queryTerm}`);
+    const params = new URLSearchParams({ query: queryTerm });
+    if (year) params.append("year", year);
+    if (rating) params.append("rating", rating);
+    if (genre) params.append("genre", genre);
+    return navigate(`/search?${params.toString()}`);
   };
 
   useEffect(() => {
@@ -148,7 +155,7 @@ export const Header = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="flex space-x-2">
                 <input
                   type="text"
                   id="search-navbar"
@@ -157,6 +164,32 @@ export const Header = () => {
                   autoComplete="off"
                   name="search"
                 />
+                <input
+                  type="number"
+                  placeholder="Year"
+                  name="year"
+                  className="block w-20 p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <select
+                  name="rating"
+                  className="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue=""
+                >
+                  <option value="">Rating</option>
+                  <option value="8">8+</option>
+                  <option value="7">7+</option>
+                  <option value="6">6+</option>
+                </select>
+                <select
+                  name="genre"
+                  className="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue=""
+                >
+                  <option value="">Genre</option>
+                  <option value="28">Action</option>
+                  <option value="35">Comedy</option>
+                  <option value="18">Drama</option>
+                </select>
               </form>
             </div>
             <button
@@ -209,7 +242,7 @@ export const Header = () => {
                   />
                 </svg>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
                 <input
                   type="text"
                   id="search-navbar"
@@ -218,6 +251,32 @@ export const Header = () => {
                   autoComplete="off"
                   name="search"
                 />
+                <input
+                  type="number"
+                  placeholder="Year"
+                  name="year"
+                  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <select
+                  name="rating"
+                  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue=""
+                >
+                  <option value="">Rating</option>
+                  <option value="8">8+</option>
+                  <option value="7">7+</option>
+                  <option value="6">6+</option>
+                </select>
+                <select
+                  name="genre"
+                  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue=""
+                >
+                  <option value="">Genre</option>
+                  <option value="28">Action</option>
+                  <option value="35">Comedy</option>
+                  <option value="18">Drama</option>
+                </select>
               </form>
             </div>
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -255,12 +314,32 @@ export const Header = () => {
               </li>
               <li>
                 <NavLink
+                  to="/movies/trending"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
+                >
+                  Trending
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/movies/upcoming"
                   className={({ isActive }) =>
                     isActive ? activeClass : inActiveClass
                   }
                 >
                   Upcoming
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/favorites"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
+                >
+                  Favorites
                 </NavLink>
               </li>
             </ul>
